@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吃什么？</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        #text-display {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            background-color: #e5ffe5;
+        }
+
+        #button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #ff8c00; /* Orange color for the button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="title">这顿吃啥呢？</div>
+        <div id="text-display">加载中...</div>
+        <button id="button" onclick="stopDisplay()">决定了, 就你了 !</button>
+    </div>
+
+    <script>
+        const texts = [
+            "拉面(兰)",
+            "拉面(日)",
+            "烧烤",
+            "寿司",
+            "卤肉饭",
+            "炸鸡",
+            "这顿不吃了"
+        ];
+        let currentIndex = 0;
+        let displayInterval;
+
+        function displayText() {
+            const textDisplay = document.getElementById('text-display');
+            textDisplay.textContent = texts[currentIndex];
+
+            currentIndex++;
+
+            if (currentIndex === texts.length) {
+                currentIndex = 0;
+            }
+        }
+
+        function startDisplay() {
+            displayInterval = setInterval(displayText, 35);
+        }
+
+        function stopDisplay() {
+            clearInterval(displayInterval);
+            const button = document.getElementById('button');
+            button.textContent = "决定好了，下顿饭见!"
+        }
+
+        // Start displaying texts when the page is loaded
+        window.onload = startDisplay;
+    </script>
+</body>
+</html>
